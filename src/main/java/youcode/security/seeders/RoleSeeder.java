@@ -31,7 +31,7 @@ public class RoleSeeder implements CommandLineRunner {
     }
 
     private void seedRoles() {
-        //? create authorities
+        // create authorities
         Authority viewRoles = authorityService.getByName(AuthorityEnum.VIEW_ROLES)
                 .orElseThrow(() -> new RuntimeException("VIEW_ROLES authority not found"));
 
