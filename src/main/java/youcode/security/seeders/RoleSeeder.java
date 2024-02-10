@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import youcode.security.domain.Authority;
 import youcode.security.domain.Role;
 import youcode.security.domain.enums.AuthorityEnum;
+import youcode.security.repository.AuthorityRepository;
 import youcode.security.repository.RoleRepository;
 import youcode.security.service.AuthorityService;
 import youcode.security.service.RoleService;
@@ -19,6 +20,8 @@ public class RoleSeeder implements CommandLineRunner {
     private final RoleService roleService;
     private final AuthorityService authorityService;
     private final RoleRepository roleRepository;
+    private final AuthorityRepository authorityRepository;
+
 
     @Override
     public void run(String... args) {
@@ -45,7 +48,7 @@ public class RoleSeeder implements CommandLineRunner {
         Authority deleteRole = authorityService.getByName(AuthorityEnum.DELETE_ROLE)
                 .orElseThrow(() -> new RuntimeException("DELETE_ROLE authority not found"));
 
-        //? Create roles and associate authorities
+        // Create roles and associate authorities
         Role userRole = Role.builder()
                 .name("USER")
                 .isDefault(true)
@@ -58,7 +61,7 @@ public class RoleSeeder implements CommandLineRunner {
 
         Role superAdminRole = Role.builder()
                 .name("SUPER_ADMIN")
-                .authorities(Arrays.asList(viewRoles, createRole, grantAuthorityToRole, revokeAuthorityFromRole, viewUsers, deleteRole))
+                .authorities(authorityRepository.findAll())
                 .build();
 
         roleService.save(userRole, true);
