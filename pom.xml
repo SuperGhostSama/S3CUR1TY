@@ -11,8 +11,8 @@
     <groupId>youcode</groupId>
     <artifactId>Security</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>ShirtShine</name>
-    <description>ShirtShine</description>
+    <name>Security</name>
+    <description>Security</description>
     <properties>
         <java.version>17</java.version>
     </properties>
