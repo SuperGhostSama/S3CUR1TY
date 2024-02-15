@@ -1,4 +1,4 @@
-package taskflow.cors;
+package youcode.security.cors;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
